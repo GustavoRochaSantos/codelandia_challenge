@@ -10,16 +10,20 @@ import HearthIcon from "assets/images/hearth.svg";
 import { getTopHeadlines, News } from "services/news.service";
 import { formatDataBr } from "util/data";
 import "./styles.css";
+import Spinner from "component/spinner";
 
 function App() {
+  const [loading, setloading] = useState(true);
   const [data, setData] = useState<News[]>([]);
   const [searchInput, setSearchInput] = useState<string>();
   const loadData = async (query?: string) => {
+    setloading(true);
     const response = await getTopHeadlines(query);
 
     if (response.status === "ok") {
       setData(response.articles);
     }
+    setloading(false);
   };
 
   const handleSearch = () => {
@@ -60,7 +64,8 @@ function App() {
         </div>
       </header>
       <main className="content">
-        {data.length === 0 && (
+        {loading && <Spinner loading={loading} />}
+        {!loading && data.length === 0 && (
           <div className="noDataFound">
             Não encontramos nenhum artigo com essa palavra chave
           </div>
