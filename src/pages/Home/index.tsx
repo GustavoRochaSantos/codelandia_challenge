@@ -9,6 +9,7 @@ import SearchIcon from "assets/images/search.svg";
 import HearthIcon from "assets/images/hearth.svg";
 import { getTopHeadlines, News } from "services/news.service";
 import { formatDataBr } from "util/data";
+import "./styles.css";
 
 function App() {
   const [data, setData] = useState<News[]>([]);

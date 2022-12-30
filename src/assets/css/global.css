@@ -13,6 +13,10 @@
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lexend+Deca&display=swap");
 }
 
+.root {
+  width: 100%;
+}
+
 * {
   box-sizing: boder-box;
   padding: 0;
@@ -26,91 +30,32 @@ body {
   background-color: var(--background);
 }
 
-header {
-  background: var(--linear);
-  height: 100px;
-  color: var(--white);
-  padding: var(--padding);
+@media screen and (max-width: 480px) {
+  :root {
+    --padding: 2rem 2rem;
+  }
 }
 
-.menu {
-  display: flex;
-  margin-bottom: 2rem;
-  justify-content: space-between;
-  align-items: center;
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --padding: 2rem 5rem;
+  }
 }
 
-a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --padding: 2rem 8rem;
+  }
 }
 
-.wrapperInput {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding-left: 20px;
-  height: 50px;
-  display: flex;
-  align-items: center;
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  :root {
+    --padding: 2rem 12rem;
+  }
 }
 
-.input {
-  background-color: transparent;
-  color: var(--white);
-  border: 0;
-  margin-left: 0.8rem;
-  height: 100%;
-  flex: 1;
-  outline: none;
-}
-
-.searchButton {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-
-.input::placeholder {
-  color: #ffffff;
-  opacity: 0.5;
-}
-
-.content {
-  padding: var(--padding);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.card {
-  background-color: var(--white);
-  padding: 1.5rem;
-}
-
-.wrapperCardTitle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.2rem;
-}
-.cardDate {
-  color: var(--text);
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.cardTitle {
-  color: var(--title);
-  font-size: 26px;
-  line-height: 32px;
-  margin-bottom: 1.1rem;
-}
-
-.cardText {
-  color: var(--text);
-  font-size: 18px;
-  line-height: 32px;
+@media screen and (min-width: 1201px) {
+  :root {
+    --padding: 2rem 16rem;
+  }
 }
