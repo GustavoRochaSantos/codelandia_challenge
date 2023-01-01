@@ -1,7 +1,6 @@
-import React from "react";
+import HearthIcon from "assets/images/hearth.svg";
 import { News } from "services/news.service";
 import { formatDataBr } from "util/data";
-import HearthIcon from "assets/images/hearth.svg";
 
 interface Params {
   news: News;

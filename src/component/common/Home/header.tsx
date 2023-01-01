@@ -20,7 +20,7 @@ const Header = ({ value, storeValue, search }: Params) => {
   return (
     <header>
       <div className="menu">
-        <a href="#">Codelândia Desafio 1 - News</a>
+        <a href="#">Codelândia Desafio 1 - Top News</a>
         <a href="#">blog</a>
       </div>
       <div className="wrapperInput">

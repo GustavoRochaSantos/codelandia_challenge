@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-
-import HearthIcon from "assets/images/hearth.svg";
-import { getTopHeadlines, News } from "services/news.service";
-import { formatDataBr } from "util/data";
-import "./styles.css";
-import Spinner from "component/shared/spinner";
-import Pagination from "component/shared/pagination";
-import { pageSize } from "util/constants";
 import Header from "component/common/Home/header";
 import NewsCard from "component/common/Home/newsCard";
+import Pagination from "component/shared/pagination";
+import Spinner from "component/shared/spinner";
+import { useEffect, useState } from "react";
+import { getTopHeadlines, News } from "services/news.service";
+import { pageSize } from "util/constants";
+import "./styles.css";
 
 function App() {
   const [loading, setloading] = useState(true);
