@@ -6,7 +6,6 @@ header {
 }
 
 .container {
-  height: 100vh;
   width: 100%;
 }
 .menu {
@@ -60,6 +59,7 @@ a {
   flex-direction: column;
   gap: 30px;
   height: 100%;
+  padding-bottom: 20px;
 }
 
 .card {

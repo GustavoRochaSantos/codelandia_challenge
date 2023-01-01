@@ -6,11 +6,11 @@ export const api = axios.create({
 
 api.interceptors.request.use((config) => {
   config.url += `&apiKey=${import.meta.env.VITE_NEWSAPI_KEY}`;
-  // console.log(config);
+  console.log(config);
   return config;
 });
 
 api.interceptors.response.use((response) => {
-  //console.log(response);
+  console.log(response);
   return response.data;
 });

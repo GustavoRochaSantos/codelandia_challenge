@@ -1,27 +1,29 @@
-import {
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  useEffect,
-  useState,
-} from "react";
-import SearchIcon from "assets/images/search.svg";
+import { useEffect, useState } from "react";
+
 import HearthIcon from "assets/images/hearth.svg";
 import { getTopHeadlines, News } from "services/news.service";
 import { formatDataBr } from "util/data";
 import "./styles.css";
-import Spinner from "component/spinner";
+import Spinner from "component/shared/spinner";
+import Pagination from "component/shared/pagination";
+import { pageSize } from "util/constants";
+import Header from "component/common/Home/header";
+import NewsCard from "component/common/Home/newsCard";
 
 function App() {
   const [loading, setloading] = useState(true);
   const [data, setData] = useState<News[]>([]);
+  const [page, setPage] = useState(0);
+  const [totalRecords, setTotalRecords] = useState(0);
   const [searchInput, setSearchInput] = useState<string>();
+
   const loadData = async (query?: string) => {
     setloading(true);
-    const response = await getTopHeadlines(query);
+    const response = await getTopHeadlines(query, page);
 
     if (response.status === "ok") {
       setData(response.articles);
+      setTotalRecords(response.totalResults);
     }
     setloading(false);
   };
@@ -30,39 +32,17 @@ function App() {
     loadData(searchInput);
   };
 
-  const handleHitEnter = (e: any) => {
-    if (e.key === "Enter") loadData(searchInput);
-  };
-
-  const onChangeInputSearch = (e: any) => {
-    setSearchInput(e.target.value);
-    if (e.target.value === "") loadData();
-  };
   useEffect(() => {
     loadData();
-  }, []);
+  }, [, page]);
 
   return (
     <div className="container">
-      <header>
-        <div className="menu">
-          <a href="#">Codelândia</a>
-          <a href="#">blog</a>
-        </div>
-        <div className="wrapperInput">
-          <button className="searchButton" onClick={handleSearch}>
-            <img src={SearchIcon} />
-          </button>
-
-          <input
-            className="input"
-            placeholder="Pesquisar no blog"
-            defaultValue={searchInput}
-            onChange={onChangeInputSearch}
-            onKeyDown={handleHitEnter}
-          />
-        </div>
-      </header>
+      <Header
+        value={searchInput}
+        storeValue={setSearchInput}
+        search={handleSearch}
+      />
       <main className="content">
         {loading && <Spinner loading={loading} />}
         {!loading && data.length === 0 && (
@@ -71,15 +51,15 @@ function App() {
           </div>
         )}
         {data.map((news) => (
-          <div className="card" key={news.url}>
-            <div className="wrapperCardTitle">
-              <div className="cardDate">{formatDataBr(news.publishedAt)}</div>
-              <img src={HearthIcon} />
-            </div>
-            <div className="cardTitle">{news.title}</div>
-            <div className="cardText">{news.description}</div>
-          </div>
+          <NewsCard key={news.url} news={news} />
         ))}
+        {totalRecords > pageSize && (
+          <Pagination
+            actualPage={page}
+            totalRecords={totalRecords}
+            handleClick={setPage}
+          />
+        )}
       </main>
     </div>
   );

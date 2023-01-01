@@ -30,6 +30,18 @@ body {
   background-color: var(--background);
 }
 
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-primary {
+  color: var(--white);
+  background-color: var(--blue);
+  padding: 0.8em;
+  font-weight: 700;
+  border: 0;
+}
+
 @media screen and (max-width: 480px) {
   :root {
     --padding: 2rem 2rem;
